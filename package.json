@@ -1,0 +1,22 @@
+{
+  "name": "oauth-passport",
+  "version": "1.0.0",
+  "description": "This is the repo with open authorization written with password.js framework",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "password.js",
+    "OAuth"
+  ],
+  "author": "Nick Dyson",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.4"
+  }
+}
