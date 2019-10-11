@@ -3,6 +3,15 @@ const GoogleStrategy = require('passport-google-oauth20');
 const User = require('../models/User');
 const destructureProfile = require('../utils/destructure-google');
 
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+    const user = await User.findById(id);
+    done(null, user);
+});
+
 passport.use(
     new GoogleStrategy({
         clientID: process.env.CLIENT_ID,
@@ -17,9 +26,9 @@ passport.use(
             if (!currentUser) {
                 currentUser = await new User({ googleId, ...props }).save();
             }
-        } catch(e) {
-            console.error(e);
+            done(null, currentUser);
+        } catch(err) {
+            done(err);
         }
-        
     })
 );

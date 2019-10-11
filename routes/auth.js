@@ -8,7 +8,7 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
 
-router.get('/google/redirect', passport.authenticate('google'), authController.googleRedirect);
+router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/login' }), authController.googleRedirect);
 
 router.get('/logout', authController.logout);
 

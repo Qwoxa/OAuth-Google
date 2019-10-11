@@ -3,12 +3,12 @@ const getLogin = (req, res, next) => {
 };
 
 const googleRedirect = (req, res, next) => {
-    console.log(req.params);
-    res.json(req.body);
+    res.redirect('/profile');
 };
 
 const logout = (req, res, next) => {
-    res.json({ msg: 'logout' });
+    req.logout();
+    res.redirect('/');
 };
 
 

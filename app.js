@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const authRoutes = require('./routes/auth');
+const profileRoutes = require('./routes/profile');
+const cookieSession = require('cookie-session');
 require('dotenv').config();
 require('./config/passport-setup');
 
@@ -18,14 +21,23 @@ mongoose.connect(DB_URI, DB_OPTIONS)
 // middleware and engine
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
-app.use('/assets', express.static('assets'));
-app.use('/auth', authRoutes);
+
+// cookie
+app.use(cookieSession({
+   maxAge: 864e5,
+   keys: [process.env.COOKIE_KEY]
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // route middleware
+app.use('/assets', express.static('assets'));
 app.get('/', (req, res) => {
-    res.render('home');
+   res.render('home');
 });
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 
 
 // handle errors
