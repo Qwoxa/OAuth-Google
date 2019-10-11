@@ -29,7 +29,6 @@ nav a {
 }
 
 main, header {
-    min-width: 960px;
     margin: 30px auto;
     padding: 0 10px;
     color: #333;
@@ -41,4 +40,22 @@ main, header {
     font-size: 18px;
     padding: 10px;
     background: #ff5353;
+}
+
+#profile {
+    width: 400px;
+    padding: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#profile-avatar {
+    vertical-align: middle;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
 }

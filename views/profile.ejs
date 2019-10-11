@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include partials/head.ejs %>
+    <%- include partials/head.ejs %>
     <title>Home</title>
 </head>
 <body>
-    <% include partials/nav.ejs %>
-    <header>
-        <h1>Welcome to your profile, <%= name %></h1>
-        <h2>Profile</h2>
-    </header>
+    <%- include('partials/nav.ejs', { loggedIn: typeof user === 'object' });  %>
     <main>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit velit maxime nulla assumenda quos! Facilis temporibus molestias vero quae tempore. Eos, esse id est commodi voluptatibus itaque rerum quae tempore.</p>
-        <img src="<%= avatar %>" alt="avatar">
+        <div id="profile">
+            <h2><%= user.name + ' ' + user.surname %></h2>
+            <img src="<%= user.avatar %>" alt="avatar" id="profile-avatar">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit velit maxime nulla assumenda quos! Facilis temporibus molestias vero quae tempore. Eos, esse id est commodi voluptatibus itaque rerum quae tempore.</p>
+        </div>
     </main>
 </body>
 </html>

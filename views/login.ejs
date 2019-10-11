@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include partials/head.ejs %>
+    <%- include partials/head.ejs %>
     <title>Login</title>
 </head>
 <body>
-    <% include partials/nav.ejs %>
+    <%- include('partials/nav.ejs', { loggedIn: typeof user === 'object' });  %>
     <header>
         <h1>Login using...</h1>
     </header>

@@ -1,40 +1,38 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const authRoutes = require('./routes/auth');
-const profileRoutes = require('./routes/profile');
+const authRoutes = require('./api/routes/auth');
+const profileRoutes = require('./api/routes/profile');
 const cookieSession = require('cookie-session');
+
+// read .env, connect db, setup password
 require('dotenv').config();
-require('./config/passport-setup');
+require('./api/utils/connect-db');
+require('./api/config/passport-setup');
 
+// create app
 const app = express();
-
-// connect mongodb
-const DB_URI = 'mongodb://localhost:27017/oauth';
-const DB_OPTIONS = { useNewUrlParser: true, useUnifiedTopology: true };
-mongoose.connect(DB_URI, DB_OPTIONS)
-.then(() => console.log('DB connected'))
-.catch(console.error.bind('DB connection error'));
-
 
 // middleware and engine
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 
-// cookie
-app.use(cookieSession({
-   maxAge: 864e5,
-   keys: [process.env.COOKIE_KEY]
-}));
+
+// cookies
+app.use(cookieSession(
+   {
+      maxAge: 864e5,
+      keys: [process.env.COOKIE_KEY]
+   }
+));
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-// route middleware
+// routes and route middleware
 app.use('/assets', express.static('assets'));
 app.get('/', (req, res) => {
-   res.render('home');
+   res.render('home', { user: req.user });
 });
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
@@ -54,6 +52,7 @@ app.use((err, req, res, next) => {
       }
    });
 });
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Running on the port ${process.env.PORT}`);

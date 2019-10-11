@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include partials/head.ejs %>
+    <% include partials/head.ejs  %>
     <title>Home</title>
 </head>
 <body>
-    <% include partials/nav.ejs %>
+    <%- include('partials/nav.ejs', { loggedIn: typeof user === 'object' });  %>
     <header>
-        <h1>Nick's OAuth</h1>
-        <h2>Some interesting topic</h2>
+        <h1>OAuth</h1>
+        <h2>Google+ OAuth2.0</h2>
     </header>
     <main>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum molestiae doloribus corrupti, necessitatibus aut error consequatur cum magnam id possimus unde repellat totam et? Ea laboriosam cumque qui adipisci soluta?</p>
+        <p>This is an example of open authorization with Google. Below is some text from Wiki just to fill the content.</p>
+        <p>OAuth (Open Authorization) is an open standard for token-based authentication and authorization on the Internet. OAuth, which is pronounced "oh-auth," allows an end user's account information to be used by third-party services, such as Facebook, without exposing the user's password.</p>
+        <p>OAuth is an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords.</p>
+        <p>This mechanism is used by companies such as Amazon, Google, Facebook, Microsoft and Twitter to permit the users to share information about their accounts with third party applications or websites. Generally, OAuth provides to clients a "secure delegated access" to server resources on behalf of a resource owner.</p>
+        <p>It specifies a process for resource owners to authorize third-party access to their server resources without sharing their credentials. Designed specifically to work with Hypertext Transfer Protocol (HTTP), OAuth essentially allows access tokens to be issued to third-party clients by an authorization server, with the approval of the resource owner. The third party then uses the access token to access the protected resources hosted by the resource server.</p>
+        <p>OAuth is a service that is complementary to and distinct from OpenID. OAuth is unrelated to OATH, which is a reference architecture for authentication, not a standard for authorization. However, OAuth is directly related to OpenID Connect (OIDC) since OIDC is an authentication layer built on top of OAuth 2.0. OAuth is also unrelated to XACML, which is an authorization policy standard. OAuth can be used in conjunction with XACML where OAuth is used for ownership consent and access delegation whereas XACML is used to define the authorization policies (e.g. managers can view documents in their region).</p>
+
     </main>
 </body>
 </html>
