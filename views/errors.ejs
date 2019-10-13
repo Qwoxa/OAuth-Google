@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head.ejs  %>
+    <title>Not found</title>
+</head>
+<body>
+    <%- include('partials/nav.ejs', { loggedIn: typeof user === 'object' });  %>
+    <header>
+        <h1><%= statusCode %> Error</h1>
+    </header>
+    <main>
+        <%= message %>
+    </main>
+</body>
+</html>

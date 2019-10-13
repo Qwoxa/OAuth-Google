@@ -1,7 +1,7 @@
 const passport = require('passport');
 
 const getLogin = (req, res, next) => {
-    if (req.user) res.redirect('/');
+    if (req.user) return res.redirect('/');
     res.render('login', { user: req.user });
 };
 

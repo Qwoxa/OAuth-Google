@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const authController = require('../controllers/auth');
+const { authController : ctrl } = require('../controllers');
 
-router.get('/login', authController.getLogin);
+router.get('/login', ctrl.getLogin);
 
-router.get('/google', authController.authGoogle);
+router.get('/google', ctrl.authGoogle);
 
-router.get('/google/redirect', authController.googleRedirect, authController.redirectAfterCb);
+router.get('/google/redirect', ctrl.googleRedirect, ctrl.redirectAfterCb);
 
-router.get('/logout', authController.logout);
+router.get('/logout', ctrl.logout);
 
 module.exports = router;
